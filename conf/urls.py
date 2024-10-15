@@ -19,14 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from conf.views import home_page_view
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-
-    path('', home_page_view, name='home'),
+    path('users/', include('users.urls', namespace='users')),
+    path('', include('common.urls', namespace='common')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
